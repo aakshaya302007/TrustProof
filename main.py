@@ -82,6 +82,7 @@ def get_score(req: ScoreRequest):
         breakdown=result["breakdown"],
     )
 
+
 @app.post("/vouch")
 def submit_vouch(req: VouchRequest):
     vouch_id = str(uuid.uuid4())[:8]
