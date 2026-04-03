@@ -1,6 +1,5 @@
 -- TrustScore PostgreSQL Schema
 -- Run: psql -d trustscore_db -f schema.sql
-
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- ── Users ─────────────────────────────────────────────────────────────────────
