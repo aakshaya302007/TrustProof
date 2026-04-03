@@ -1,29 +1,98 @@
-# TrustScore — MVP
+# 🚀 TrustScore — MVP
 
 > Your life is your credit score. For 190 million unbanked Indians.
 
-## Project structure
+---
+
+## 🌐 Live Demo
+
+👉 
+---
+
+## ⚠️ MVP Note
+
+This project is a **Minimum Viable Product (MVP)** built for demonstration purposes.
+The deployed version showcases the **frontend experience**, while the backend (FastAPI), ML scoring logic, and database schema are included in this repository for completeness and future integration.
+
+---
+
+## 📌 Problem Statement
+
+Millions of people lack access to formal credit systems due to the absence of traditional financial history. Despite being financially responsible in daily life, they remain invisible to banks.
+
+---
+
+## 💡 Solution
+
+**TrustScore** provides an alternative credit scoring system using real-life behavioral signals such as:
+
+* Electricity bill payments
+* UPI transaction activity
+* Mobile recharge consistency
+* Community trust (vouching)
+
+---
+
+## 🏗️ Project Structure
 
 ```
 trustscore/
 ├── backend/
-│   ├── main.py           # FastAPI app — all API routes
+│   ├── main.py           # FastAPI app — API routes
 │   └── requirements.txt
 ├── ml/
 │   ├── __init__.py
-│   └── scorer.py         # Scoring engine (swap with trained RF for prod)
+│   └── scorer.py         # Scoring engine
 ├── db/
-│   └── schema.sql        # PostgreSQL schema + seed data
+│   └── schema.sql        # Database schema
 ├── frontend/
-│   └── index.html        # Complete single-file MVP website
-└── render.yaml           # Render deployment config
+│   └── index.html        # MVP website (deployed)
+└── render.yaml           # Backend deployment config
 ```
 
 ---
 
-## Quick start
+## ⚙️ How It Works
 
-### 1. Backend (FastAPI)
+1. User enters lifestyle-based financial inputs
+2. System processes inputs using scoring logic
+3. TrustScore is generated instantly
+4. Loan eligibility is displayed
+
+---
+
+## 🧠 Scoring Model
+
+The scoring engine (`ml/scorer.py`) uses weighted signals:
+
+| Signal                       | Weight |
+| ---------------------------- | ------ |
+| Electricity bill consistency | 28%    |
+| UPI transaction frequency    | 22%    |
+| Mobile recharge consistency  | 18%    |
+| SHG membership               | 17%    |
+| Community vouches            | 15%    |
+
+Score range: **300 – 900**
+
+---
+
+## 🔗 API Endpoints (Backend)
+
+| Method | Path         | Description          |
+| ------ | ------------ | -------------------- |
+| GET    | `/health`    | Check service status |
+| POST   | `/score`     | Compute TrustScore   |
+| GET    | `/user/{id}` | Fetch user profile   |
+| POST   | `/vouch`     | Submit vouch         |
+
+---
+
+## 🧪 Local Development (Optional)
+
+> This step is NOT required for viewing the MVP demo.
+
+### Backend
 
 ```bash
 cd backend
@@ -31,104 +100,49 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 ```
 
-API docs auto-generated at: `http://localhost:8000/docs`
+### Frontend
 
-### 2. Frontend
+Open:
 
-Open `frontend/index.html` directly in a browser — no build step needed.
+```
+frontend/index.html
+```
 
-For production, point the fetch calls in the JS to your Render API URL.
+---
 
-### 3. Database
+## 🗄️ Database Setup (Optional)
 
 ```bash
 createdb trustscore_db
 psql -d trustscore_db -f db/schema.sql
 ```
 
-Set env var: `DATABASE_URL=postgresql://user:pass@localhost/trustscore_db`
+---
+
+## 🚀 Future Enhancements
+
+* Deploy backend using cloud platform
+* Integrate real-time APIs
+* AI/ML model improvements
+* Mobile application
 
 ---
 
-## API endpoints
+## 👥 Team Contributions
 
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/health` | Liveness check |
-| POST | `/score` | Compute TrustScore from signals |
-| GET | `/user/{id}` | Fetch user profile |
-| POST | `/vouch` | Submit community vouch request |
-
-### POST /score — example
-
-```json
-// Request
-{
-  "electricity_months": 10,
-  "upi_txns_monthly": 28,
-  "recharge_months": 10,
-  "community_vouches": 3,
-  "shg_member": true,
-  "years_at_address": 5
-}
-
-// Response
-{
-  "score": 726,
-  "tier": "Good",
-  "max_loan_inr": 50000,
-  "interest_rate": 13.0,
-  "model_version": "sklearn-rf-v2",
-  "zk_proof_hash": "0x9f3a...d72c",
-  "computed_at": "2024-04-03T10:30:00Z",
-  "breakdown": { ... }
-}
-```
+* **Frontend:** UI/UX and user experience
+* **Backend:** API and logic handling
+* **ML Model:** Scoring algorithm
+* **Database:** Schema design and setup
 
 ---
 
-## Scoring model
+## ⚠️ Disclaimer
 
-The ML engine (`ml/scorer.py`) uses a weighted scoring formula matching the trained Random Forest feature importances:
-
-| Signal | Weight |
-|--------|--------|
-| Electricity bill consistency | 28% |
-| UPI transaction frequency | 22% |
-| Mobile recharge streak | 18% |
-| SHG membership | 17% |
-| Community vouches | 15% |
-
-Score range: **300 – 900**
-
-To swap in a trained sklearn model:
-```python
-import joblib
-model = joblib.load("models/rf_v2.pkl")
-score = model.predict([[elec, upi, rech, shg, vouch]])[0]
-```
+This is a **hackathon prototype** and not a real financial service.
+No sensitive user data is collected or stored.
 
 ---
 
-## Deploy to Render
+⭐ *Thank you for reviewing our project!*
 
-1. Push this repo to GitHub
-2. Go to [render.com](https://render.com) → New → Blueprint
-3. Point to `render.yaml` — Render auto-creates the web service + PostgreSQL
-4. Set `DATABASE_URL` from the Render dashboard (auto-linked via render.yaml)
-
----
-
-## Score tiers
-
-| Score | Tier | Max loan | Interest |
-|-------|------|----------|----------|
-| 750–900 | Excellent | ₹1,00,000 | 10% |
-| 680–749 | Good | ₹50,000 | 13% |
-| 600–679 | Fair | ₹25,000 | 16% |
-| 500–599 | Developing | ₹10,000 | 18% |
-| 300–499 | Needs work | — | — |
-
----
-
-Built for India's 190 million unbanked.
