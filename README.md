@@ -6,8 +6,14 @@
 
 ## 🌐 Live Demo
 
-👉 
+👉 https://69cfb0f399c452f0da6ac837--bucolic-smakager-c86375.netlify.app/
+
 ---
+
+## Video
+
+👉https://drive.google.com/file/d/1I2EhasrB1vdVxKiMEbh4O_HrCuAlHS3D/view?usp=drive_link
+
 
 ## ⚠️ MVP Note
 
