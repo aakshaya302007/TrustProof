@@ -32,7 +32,6 @@ def _normalize(value: float, max_val: float) -> float:
     """Clamp and normalize to [0, 1]."""
     return max(0.0, min(1.0, value / max_val))
 
-
 def compute_score(
     electricity_months: int,
     upi_txns_monthly: int,
