@@ -2,9 +2,11 @@ fastapi
 uvicorn
 pydantic
 
+
 # Database
 sqlalchemy
 psycopg2-binary
+
 
 # ML Model
 scikit-learn
