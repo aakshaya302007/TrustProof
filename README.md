@@ -94,37 +94,6 @@ Score range: **300 – 900**
 
 ---
 
-## 🧪 Local Development (Optional)
-
-> This step is NOT required for viewing the MVP demo.
-
-### Backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-```
-
-### Frontend
-
-Open:
-
-```
-frontend/index.html
-```
-
----
-
-## 🗄️ Database Setup (Optional)
-
-```bash
-createdb trustscore_db
-psql -d trustscore_db -f db/schema.sql
-```
-
----
-
 ## 🚀 Future Enhancements
 
 * Deploy backend using cloud platform
@@ -136,10 +105,10 @@ psql -d trustscore_db -f db/schema.sql
 
 ## 👥 Team Contributions
 
-* **Frontend:** UI/UX and user experience
-* **Backend:** API and logic handling
-* **ML Model:** Scoring algorithm
-* **Database:** Schema design and setup
+* Aakshaya V - **Frontend:** UI/UX and user experience
+* Amrita S - **Backend:** API and logic handling
+* Sre Harshini T - **ML Model:** Scoring algorithm
+* Trishna G - **Database:** Schema design and setup
 
 ---
 
